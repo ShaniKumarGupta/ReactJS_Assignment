@@ -5,19 +5,19 @@ import TodoItemList from './TodoItemList';
 
 const TodoList = () => {
 
-    const [inputList, setInputList] = useState("");
-    const [item, setItem] = useState([]);
+    const [inputText, setInputText] = useState("");
+    const [list, setList] = useState([]);
     const [count, setCount] = useState(0);
 
     const itemEvent = (event) => {
-        setInputList(event.target.value);
+        setInputText(event.target.value);
     };
 
     const addItem = () => {
-        setItem((prevState) => {
-            return [...prevState, inputList];
+        setList((prevState) => {
+            return [...prevState, inputText];
         });
-        setInputList("");
+        setInputText("");
     };
 
     return (
@@ -26,12 +26,12 @@ const TodoList = () => {
                 <br></br>
                 <h2>Add Item in List</h2>
                 <br />
-                <input type="text" placeholder="Add Item" value={inputList} onChange={itemEvent}></input>
+                <input type="text" placeholder="Add Item" value={inputText} onChange={itemEvent}></input>
                 <button className="btnadd" onClick={() => {addItem(); setCount(count + 1)}}>ADD</button>
 
                 <ol>
-                    {item.map( (itemval, idx) => {
-                       return <TodoItemList key= {idx} text={itemval} cl={idx}></TodoItemList>
+                    {list.map( (listItem, idx) => {
+                       return <TodoItemList key= {idx} text={listItem} cl={idx}></TodoItemList>
                     })}
                 </ol>
             </div>
